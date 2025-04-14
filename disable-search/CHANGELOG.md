@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.1 _(2025-04-14)_
+* Change: Discontinue unnecessary explicit loading of textdomain
+* Hardening: Ensure translated error message doesn't contain markup
+* Change: Note compatibility through WP 6.8+
+* Change: Note compatibility through PHP 8.3+
+* Change: Update copyright date (2025)
+* Unit tests:
+    * Change: Use `expectException()` instead of `@expectedException` comment (for PHPUnit 9 support)
+
 ## 2.1 _(2024-08-08)_
 * Change: Remove the admin bar search field with a higher priority than what it was changed to in WP 6.6.
 * Change: Check if core/search block is registered before attempting to unregister. Props toru.

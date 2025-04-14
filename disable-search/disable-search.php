@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Disable Search
- * Version:     2.1
+ * Version:     2.1.1
  * Plugin URI:  https://coffee2code.com/wp-plugins/disable-search/
  * Author:      Scott Reilly
  * Author URI:  https://coffee2code.com/
@@ -10,7 +10,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Disable the built-in front-end search capabilities of WordPress.
  *
- * Compatible with WordPress 4.6 through 6.6+.
+ * Compatible with WordPress 4.6 through 6.8+, and PHP through at least 8.3+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
@@ -18,11 +18,11 @@
  *
  * @package Disable_Search
  * @author  Scott Reilly
- * @version 2.1
+ * @version 2.1.1
  */
 
 /*
-	Copyright (c) 2008-2024 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2008-2025 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -51,7 +51,7 @@ class c2c_DisableSearch {
 	 * @since 1.3
 	 */
 	public static function version() {
-		return '2.1';
+		return '2.1.1';
 	}
 
 	/**
@@ -69,16 +69,13 @@ class c2c_DisableSearch {
 	 */
 	public function __wakeup() {
 		/* translators: %s: Name of plugin class. */
-		throw new Error( sprintf( __( '%s cannot be unserialized.', 'disable-search' ), __CLASS__ ) );
+		throw new Error( esc_html( sprintf( __( '%s cannot be unserialized.', 'disable-search' ), __CLASS__ ) ) );
 	}
 
 	/**
 	 * Initializes the plugin.
 	 */
 	public static function init() {
-		// Load textdomain.
-		load_plugin_textdomain( 'disable-search' );
-
 		// Register hooks.
 		add_action( 'widgets_init',                 array( __CLASS__, 'disable_search_widget' ), 1 );
 		if ( ! is_admin() ) {

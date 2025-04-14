@@ -5,8 +5,8 @@ Tags: search, disable, coffee2code
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.6
-Tested up to: 6.6
-Stable tag: 2.1
+Tested up to: 6.8
+Stable tag: 2.1.1
 
 Disable the built-in front-end search capabilities of WordPress.
 
@@ -65,12 +65,21 @@ No, not at this time, though it is feature being considered. (In truth, custom c
 
 Yes. This plugin does not collect, store, or disseminate any information from any users or site visitors.
 
-= Does this plugin include unit tests? =
+= Does this plugin have unit tests? =
 
 Yes. The tests are not packaged in the release .zip file or included in plugins.svn.wordpress.org, but can be found in the [plugin's GitHub repository](https://github.com/coffee2code/disable-search/).
 
 
 == Changelog ==
+
+= 2.1.1 (2025-04-14) =
+* Change: Discontinue unnecessary explicit loading of textdomain
+* Hardening: Ensure translated error message doesn't contain markup
+* Change: Note compatibility through WP 6.8+
+* Change: Note compatibility through PHP 8.3+
+* Change: Update copyright date (2025)
+* Unit tests:
+    * Change: Use `expectException()` instead of `@expectedException` comment (for PHPUnit 9 support)
 
 = 2.1 (2024-08-08) =
 * Change: Remove the admin bar search field with a higher priority than what it was changed to in WP 6.6.
@@ -94,33 +103,13 @@ Yes. The tests are not packaged in the release .zip file or included in plugins.
     * New: Add `composer.json` for PHPUnit Polyfill dependency
     * Change: Prevent PHP warnings due to missing core-related generated files
 
-= 2.0 (2021-09-13) =
-Highlights:
-
-* This release finally addresses disabling the search block, notes compatibility through WP 5.8+, and restructures unit test directories.
-
-Details:
-
-* New: Disable the search block
-    * New: Add `disable_core_search_block()` to unregister block via PHP
-    * New: Add `enqueue_block_editor_assets()` to register JS script to unregister search block via JS
-    * New: Add JS script file to unregister search block
-    * Change: Update documentation to reflect search block being disabled
-* Change: Remove `get_search_form()` and simply use `__return_empty_string()` as callback to `'get_search_form'` filter
-* Change: Note compatibility through WP 5.8+
-* Change: Tweak installation instruction
-* Unit tests:
-    * Change: Restructure unit test directories
-        * Change: Move `phpunit/` into `tests/`
-        * Change: Move `phpunit/bin` into `tests/`
-    * Change: Remove 'test-' prefix from unit test file
-    * Change: In bootstrap, store path to plugin file constant
-    * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/disable-search/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+Trivial update: discontinued explicit loading of textdomain, noted compatibility through WP 6.8+ and PHP 8.3+, and updated copyright date (2025).
 
 = 2.1 =
 Minor update: updated removal of admin bar search field, checked if core/search block is registered before attempting to unregister, noted compatibility through WP 6.6+, removed unit tests from release packaging, and updated copyright date (2024)
